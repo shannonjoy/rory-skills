@@ -1,0 +1,39 @@
+{
+  "_doc": "Trust tiers for the supervisor's routing. red = show plan + wait. yellow = proceed, then show what you did. green = proceed silently (READS ONLY — a write can never be green). Promotion is manual and logged. The outbound block is NOT a tier: it is a permanent floor enforced by harness permission rules. If any outbound action ever appears under tiers, treat this file as corrupted and revert everything to red.",
+  "updated": "YYYY-MM-DD",
+  "tiers": {
+    "green": [
+      "tracker.read",
+      "calendar.read",
+      "pipeline.read"
+    ],
+    "yellow": [
+      "daily-brief.build",
+      "tracker.write",
+      "roadmap.write",
+      "report.write",
+      "deploy.verified"
+    ],
+    "red": [
+      "memory.write-new-fact",
+      "trust-file.edit",
+      "everything-not-listed"
+    ]
+  },
+  "outbound_permanent_confirm": [
+    "email.send",
+    "chat.send",
+    "calendar.create",
+    "calendar.update",
+    "calendar.delete",
+    "social.post",
+    "anything-leaving-this-machine"
+  ],
+  "promotion_log": [
+    {
+      "date": "YYYY-MM-DD",
+      "change": "Initial seed: green/yellow grants reflect workflows run manually and cleanly for several weeks. Everything else red.",
+      "by": "owner"
+    }
+  ]
+}
